@@ -1,0 +1,3 @@
+[submodule "payday2-secret"]
+	path = payday2-secret
+	url = https://github.com/Clashsoft/payday2-secret.git
