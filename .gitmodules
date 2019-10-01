@@ -4,3 +4,6 @@
 [submodule "jindosh-riddle"]
 	path = jindosh-riddle
 	url = https://github.com/Clashsoft/jindosh-riddle.git
+[submodule "se-flight-calculator"]
+	path = se-flight-calculator
+	url = https://github.com/Clashsoft/se-flight-calculator.git
