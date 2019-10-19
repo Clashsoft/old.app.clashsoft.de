@@ -7,3 +7,6 @@
 [submodule "se-flight-calculator"]
 	path = se-flight-calculator
 	url = https://github.com/Clashsoft/se-flight-calculator.git
+[submodule "darkmode"]
+	path = darkmode
+	url = https://github.com/Clashsoft/darkmode.git
