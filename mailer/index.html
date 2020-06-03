@@ -118,6 +118,10 @@
 		const addressList = addressesText.split('\n');
 		const variableList = variablesText.split('\n');
 
+		const maxRows = Math.max(addressList.length, variableList.length);
+		addresses.rows = maxRows;
+		variables.rows = maxRows;
+
 		let mailtoLinks = '';
 		for (let i = 0; i < addressList.length; i++) {
 			const recipient = addressList[i];
