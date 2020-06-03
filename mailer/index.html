@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en" class="h-100">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+	<!-- Dark mode CSS -->
+	<link rel="stylesheet" href="https://unpkg.com/bootstrap-darkmode@0.6.0/dist/darktheme.css">
+
+	<title>Mailer</title>
+</head>
+
+<body class="h-100">
+
+<script src="https://unpkg.com/bootstrap-darkmode@0.6.0/dist/theme.js"></script>
+<script>
+	const themeConfig = new ThemeConfig();
+	themeConfig.initTheme();
+</script>
+
+<div class="container text-center">
+	<h1>Mailer</h1>
+
+	<div class="form">
+		<div class="form-group">
+			<label for="subject">Subject</label>
+			<input type="text" class="form-control" id="subject" onchange="update()">
+		</div>
+		<div class="form-group">
+			<label for="template">Template</label>
+			<textarea class="form-control" id="template" rows="20" onchange="update()"></textarea>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-4">
+			<div class="form form-group">
+				<h1><label for="addresses">Addresses</label></h1>
+				<textarea class="form-control" id="addresses" rows="50" onchange="update()"></textarea>
+			</div>
+		</div>
+		<div class="col-4">
+			<div class="form form-group">
+				<h1><label for="variables">Variables</label></h1>
+				<textarea class="form-control" id="variables" rows="50" onchange="update()"></textarea>
+			</div>
+		</div>
+		<div class="col-4">
+			<h1><label for="mailto-list">MailTo-Links</label></h1>
+			<div class="form-control h-auto" id="mailto-list">
+			</div>
+		</div>
+	</div>
+
+	<script>
+		writeDarkSwitch(themeConfig);
+	</script>
+</div>
+</body>
+
+<script>
+	const subject = document.getElementById('subject');
+	const template = document.getElementById('template');
+	const addresses = document.getElementById('addresses');
+	const variables = document.getElementById('variables');
+	const mailtoList = document.getElementById('mailto-list');
+
+	function replaceVariables(body, variables) {
+		for (let i = 0; i < variables.length; i++) {
+			body = body.replace(`#${i + 1}#`, variables[i]);
+		}
+		return body;
+	}
+
+	function update() {
+		const subjectTemplate = subject.value;
+		const bodyTemplate = template.value;
+		const addressList = addresses.value.split('\n');
+		const variableList = variables.value.split('\n');
+
+		let mailtoLinks = '';
+		for (let i = 0; i < addressList.length; i++) {
+			const recipient = addressList[i];
+			const variables = (variableList[i] || '').split('\t');
+
+			const subject = replaceVariables(subjectTemplate, variables);
+			const body = replaceVariables(bodyTemplate, variables);
+
+			mailtoLinks += `<a href="mailto:${recipient}?subject=${encodeURIComponent(
+				subject)}&body=${encodeURIComponent(body)}">Click here</a><br/>\n`;
+		}
+		mailtoList.innerHTML = mailtoLinks;
+	}
+</script>
+</html>
