@@ -121,7 +121,7 @@
 			const body = replaceVariables(bodyTemplate, variables);
 
 			mailtoLinks += `<a href="mailto:${recipient}?subject=${encodeURIComponent(
-				subject)}&body=${encodeURIComponent(body)}">Click here</a><br/>\n`;
+				subject)}&body=${encodeURIComponent(body)}">mailto:${recipient}</a><br/>\n`;
 		}
 		mailtoList.innerHTML = mailtoLinks;
 	}
