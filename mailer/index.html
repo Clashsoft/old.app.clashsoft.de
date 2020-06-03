@@ -30,10 +30,16 @@
 		<div class="form-group">
 			<label for="subject">Subject</label>
 			<input type="text" class="form-control" id="subject" onchange="update()">
+			<small class="form-text text-muted">
+				Supports variable insertion with <code>#1#</code>, <code>#2#</code>, ...
+			</small>
 		</div>
 		<div class="form-group">
 			<label for="template">Template</label>
 			<textarea class="form-control" id="template" rows="20" onchange="update()"></textarea>
+			<small class="form-text text-muted">
+				Supports HTML and variable insertion with <code>#1#</code>, <code>#2#</code>, ...
+			</small>
 		</div>
 	</div>
 
@@ -42,12 +48,19 @@
 			<div class="form form-group">
 				<h1><label for="addresses">Addresses</label></h1>
 				<textarea class="form-control" id="addresses" rows="50" onchange="update()"></textarea>
+				<small class="form-text text-muted">
+					One address per line.
+				</small>
 			</div>
 		</div>
 		<div class="col-4">
 			<div class="form form-group">
 				<h1><label for="variables">Variables</label></h1>
 				<textarea class="form-control" id="variables" rows="50" onchange="update()"></textarea>
+				<small class="form-text text-muted">
+					Variables corresponding to addresses on the same line.
+					Multiple variables (<code>#1#</code>, <code>#2#</code>, ...) must be separated by tabs.
+				</small>
 			</div>
 		</div>
 		<div class="col-4">
