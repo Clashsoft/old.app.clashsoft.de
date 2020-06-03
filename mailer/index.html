@@ -85,7 +85,7 @@
 
 	function replaceVariables(body, variables) {
 		for (let i = 0; i < variables.length; i++) {
-			body = body.replace(`#${i + 1}#`, variables[i]);
+			body = body.replace(`#${i + 1}#`, variables[i] || '');
 		}
 		return body;
 	}
