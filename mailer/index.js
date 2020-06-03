@@ -33,8 +33,8 @@ function update() {
 	const variableList = variablesText.split('\n');
 
 	const maxRows = Math.max(addressList.length, variableList.length);
-	addresses.rows = maxRows;
-	variables.rows = maxRows;
+	addresses.rows = maxRows + 2;
+	variables.rows = maxRows + 2;
 
 	let mailtoLinks = '';
 	for (let i = 0; i < addressList.length; i++) {
